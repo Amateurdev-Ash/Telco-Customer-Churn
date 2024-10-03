@@ -1,150 +1,65 @@
-# Telco-Customer-Churn
-## Customer Churn Prediction Case Study
-### Project Overview
-This project focuses on building a machine learning classifier to predict customer churn based on a Telco Customer Churn dataset from a Kaggle competition. The goal is to classify whether a customer is likely to churn based on their demographic details, services subscribed, and billing information. This repository provides the complete workflow from data preprocessing and exploratory data analysis to model building and evaluation.
-
-### Table of Contents
-1.	Dataset
-2.	Problem Statement
-3.	Project Workflow
-4.	Data Preprocessing
-5.	Exploratory Data Analysis (EDA)
-6.	Feature Engineering
-7.	Modeling
-8.	Results
-9.	Tools Used
-10.	Conclusion
-
-### 1. The dataset used in this project is the Telco Customer Churn dataset, sourced from Kaggle. The dataset contains 7,043 customer records with the following features:
-
-•	 customerID: Unique identifier for each customer
-
-•	Demographic details (e.g., gender, SeniorCitizen, Partner, Dependents)
-
-•	Service details (e.g., tenure, PhoneService, MultipleLines, InternetService, OnlineSecurity, etc.)
-
-•	 Billing details (e.g., MonthlyCharges, TotalCharges, PaymentMethod)
-
-•	Target: Churn – whether the customer churned (Yes/No)
-
-
-### 2. Problem Statement
-
-The objective is to build a predictive model that can estimate the likelihood of a customer churning (leaving the telecom company) based on their previous behaviors and subscribed services. This will help the telecom company to identify at-risk customers and take preventive measures to reduce churn.
-
-
-
-
-### 3. Project Workflow
-
-##### Data Cleaning: Identifying and handling missing data in the TotalCharges field
-
-##### Data Preprocessing: Label encoding, one-hot encoding, and feature scaling
-
-##### Exploratory Data Analysis (EDA): Analyzing relationships between features and churn through visualizations
-
-##### Modeling: Building and evaluating machine learning models
-
-##### Evaluation: Using metrics like accuracy, precision, recall, and AUC to measure the model’s performance
-
-
-
-
-### 4. Data Preprocessing
-
-#### Steps Involved
-
-•	Handling Missing Values: Identified 11 missing values in the TotalCharges column. These were found to be space characters, which were removed
-
-•	Label Encoding: Categorical binary columns (e.g., gender, Partner, Dependents) were label-encoded (Yes = 1, No = 0)
-
-•	One-Hot Encoding: Non-binary categorical columns (e.g., InternetService, PaymentMethod) were converted to numerical features using one-hot encoding
-
-•	Feature Scaling: Numerical columns (tenure, MonthlyCharges, TotalCharges) were scaled using the StandardScaler to normalize their distribution for better performance in models
-
-•	Dropping Irrelevant Features: The customerID column was removed since it does not contribute to predicting churn
-
-### 5. Exploratory Data Analysis (EDA)
-
-•	Distribution of Churn: Created visualizations (e.g., pie charts) to show the percentage of customers who churned vs. those who did not
-
-•	Crosstab Analysis: Performed crosstab analysis to understand churn behavior across different demographic and service-related categories, such as gender, SeniorCitizen, Partner, Dependents, and Contract.
-•	Violin Plots: Used violin plots to visualize the relationship between churn and features like MonthlyCharges and tenure
-
-#### Found that customers with higher monthly charges and shorter tenures tend to churn more.
-
-
-
-
-### 6. Feature Engineering
-
-After cleaning and encoding, we had 42 Features including the target (Churn).
-
-Numerical columns were scaled, and categorical variables were encoded to make the data ready for model training.
-
-
-
-
-### 7.1 Modeling
-
-The prepared dataset was used to train several machine learning classifiers, including:
-
-•	Logistic Regression
-
-•	Decision Trees
-
-•	Random Forest
-
-•	Tensorflow Sequential (Convolutional Neural Network)
-
-
-
-### 7.2 Model Evaluation
-
-Metrics used for evaluating model performance:
-
-•	Accuracy: Measures the percentage of correct predictions
-
-•	Precision: Measures the accuracy of positive predictions (customers who churned)
-
-•	Recall: Measures the ability to capture all positive instances (customers who churned)
-
-•	AUC-ROC Curve: Plots the true positive rate vs. false positive rate and summarizes model performance
-
-
-
-
-### 8. Results
-
-##### Initial tests showed that certain models (e.g., Random Forest) performed better in terms of AUC and accuracy compared to Logistic Regression
-
-Key insights from the data:
-
-•	Higher Monthly Charges: Customers with higher monthly charges are more likely to churn
-
-•	Shorter Tenure: New customers tend to churn more, suggesting dissatisfaction with the service early on
-
-•	Senior Citizens: Senior citizens have a higher churn rate compared to younger customers
-
-•	Contract Type: Customers with month-to-month contracts are more prone to churn compared to those with yearly contracts
-
-### 9. Tools Used
-
-•	Python 3.9
-
-•	Pandas for data manipulation
-
-•	Matplotlib and Seaborn for data visualization
-
-•	Scikit-learn for data preprocessing, model building, and evaluation
-
-•Tensorflow for advanced modeling
-
-•	Jupyter Notebooks for running and documenting experiments
-
-
-
-
-### 10. Conclusion
-
-##### The project successfully built a churn prediction model that can be used by telecom companies to identify customers who are at risk of leaving. By identifying the key drivers of churn (e.g., higher charges, short tenure), the company can implement strategic actions to retain customers.
+# Customer Churn Prediction
+
+This project predicts customer churn in the telecommunications industry using machine learning and deep learning. It utilizes the Telco Customer Churn dataset from Kaggle, which includes customer attributes, service details, and churn status. The goal is to identify customers at risk of churning.
+
+## Table of Contents
+- [Project Description](#project-description)
+- [Dataset](#dataset)
+- [Data Preprocessing](#data-preprocessing)
+- [Exploratory Data Analysis](#exploratory-data-analysis)
+- [Modeling](#modeling)
+    - [Logistic Regression](#logistic-regression)
+    - [Random Forest](#random-forest)
+    - [Simple Neural Network](#simple-neural-network)
+    - [Deep Neural Network](#deep-neural-network)
+- [Evaluation](#evaluation)
+- [How to Run](#how-to-run)
+
+## Project Description
+Customer churn is a major concern for telecom companies. This project aims to predict churn using machine learning and deep learning models. By identifying potential churners, companies can implement proactive retention strategies.
+
+## Dataset
+The Telco Customer Churn dataset from Kaggle is used. It contains information about customers, including:
+
+- **Demographics:** Gender, age (SeniorCitizen), marital status (Partner), dependents (Dependents).
+- **Services:** PhoneService, MultipleLines, InternetService, OnlineSecurity, OnlineBackup, DeviceProtection, TechSupport, StreamingTV, StreamingMovies.
+- **Contract:**   
+ Contract term, PaperlessBilling, PaymentMethod.
+- **Billing:** MonthlyCharges, TotalCharges.
+- **Churn:** Whether the customer churned (Yes/No).
+
+## Data Preprocessing
+- **Handling Missing Values:**  Missing values in the `TotalCharges` column are identified and removed.
+- **Encoding Categorical Features:**
+    - **Label Encoding:** Binary features (Yes/No) are label encoded (0/1).
+    - **One-Hot Encoding:**  Categorical features with multiple categories are one-hot encoded.
+- **Scaling Numerical Features:** Numerical features (`tenure`, `MonthlyCharges`, `TotalCharges`) are standardized using `StandardScaler`.
+
+## Exploratory Data Analysis
+- **Churn Distribution:** A pie chart visualizes the proportion of churned and non-churned customers.
+- **Churn vs. Monthly Charges:** A violin plot explores the relationship between monthly charges and churn.
+- **Churn vs. Tenure:** A violin plot examines the relationship between customer tenure and churn.
+
+## Modeling
+### Logistic Regression
+A logistic regression model is trained as a baseline classifier.
+
+### Random Forest
+A random forest classifier is employed to potentially improve prediction accuracy.
+
+### Simple Neural Network
+A simple neural network with one hidden layer is implemented using TensorFlow/Keras.
+
+### Deep Neural Network
+A deeper neural network with three hidden layers, dropout, and L2 regularization is implemented. Checkpointing and early stopping are used to optimize training.
+
+## Evaluation
+Models are evaluated using:
+- **Accuracy**
+- **Confusion Matrix**
+- **Classification Report (Precision, Recall, F1-score)**
+
+## How to Run
+1. **Clone the repository:** `git clone https://github.com/your-username/churn-prediction.git`
+2. **Install dependencies:** `pip install -r requirements.txt`
+3. **Run the notebook:** `jupyter notebook churn_analysis.ipynb`
